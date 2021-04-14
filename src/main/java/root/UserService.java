@@ -19,7 +19,6 @@ public class UserService {
     public static void initDatabase() {
         Nitrite database = Nitrite.builder()
                 .filePath(getPathToFile("registration.db").toFile())
-                .filePath(getPathToFile("registration-example.db").toFile())
                 .openOrCreate("admin", "admin");
 
         userRepository = database.getRepository(User.class);
@@ -35,8 +34,6 @@ public class UserService {
             if (Objects.equals(username, user.getUsername()))
                 throw new ExceptionUsernameExists(username);
         }
-    public static void addUser(String username, String password){
-        userRepository.insert(new User(username, encodePassword(username, password)));
     }
 
     private static String encodePassword(String salt, String password) {
