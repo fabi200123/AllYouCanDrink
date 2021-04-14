@@ -1,8 +1,5 @@
 package root;
 
-/*public class Controller {
-}*/
-
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
@@ -17,6 +14,7 @@ public class Controller {
     private PasswordField passwordField;
     @FXML
     private TextField usernameField;
+
     @FXML
     private ComboBox role;
 
@@ -33,5 +31,9 @@ public class Controller {
         } catch (ExceptionUsernameExists e) {
             registrationMessage.setText(e.getMessage());
         }
+    @FXML
+    public void handleRegisterAction() {
+            UserService.addUser(usernameField.getText(), passwordField.getText());
+            registrationMessage.setText("Account created successfully!");
     }
 }
