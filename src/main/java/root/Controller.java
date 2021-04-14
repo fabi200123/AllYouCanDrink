@@ -16,6 +16,22 @@ public class Controller {
     private TextField usernameField;
 
     @FXML
+    private ComboBox role;
+
+    @FXML
+    public void initialize() {
+        role.getItems().addAll("Client", "Manager");
+    }
+
+    @FXML
+    public void handleRegisterAction() {
+        try {
+            UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
+            registrationMessage.setText("Account created successfully!");
+        } catch (ExceptionUsernameExists e) {
+            registrationMessage.setText(e.getMessage());
+        }
+    @FXML
     public void handleRegisterAction() {
             UserService.addUser(usernameField.getText(), passwordField.getText());
             registrationMessage.setText("Account created successfully!");
