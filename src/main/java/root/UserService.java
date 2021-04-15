@@ -3,7 +3,6 @@ package root;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 
-
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -36,6 +35,19 @@ public class UserService {
         }
     }
 
+    public static void checkUserDoesNotExist(String username) throws ExceptionUsernameDoesNotExist {
+        int ok = 0;
+        for (User user : userRepository.find()) {
+            if (Objects.equals(username, user.getUsername())) {
+                ok = 1;
+                break;
+            }
+        }
+        if (ok == 0){
+            throw new ExceptionUsernameDoesNotExist(username);
+        }
+    }
+
     private static String encodePassword(String salt, String password) {
         MessageDigest md = getMessageDigest();
         md.update(salt.getBytes(StandardCharsets.UTF_8));
@@ -49,7 +61,7 @@ public class UserService {
 
     private static MessageDigest getMessageDigest() {
         MessageDigest md;
-        try {
+        try { //SHA-512
             md = MessageDigest.getInstance("SHA-512"); //Algoritm super complicat de codificare a parolei, garantat neluat de la profi
         } catch (NoSuchAlgorithmException e) {
             throw new IllegalStateException("Toata cryptarea a fost o minciuna!");
