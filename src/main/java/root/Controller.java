@@ -34,5 +34,8 @@ public class Controller {
             registrationMessage.setText(e.getMessage());
         }
     }
+    public void handleLoginAction(){
+
+    }
 }
 
