@@ -1,13 +1,10 @@
 package root;
 
-/*public class Controller {
-}*/
-
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
-        import javafx.scene.control.TextField;
-        import javafx.scene.text.Text;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class Controller {
 
@@ -34,8 +31,11 @@ public class Controller {
             registrationMessage.setText(e.getMessage());
         }
     }
-    public void handleLoginAction(){
-
+    public void handleLoginAction() {
+        try {
+            UserService.checkUserDoesNotExist(usernameField.getText());
+        } catch (ExceptionUsernameDoesNotExist e) {
+            registrationMessage.setText(e.getMessage());
+        }
     }
 }
-
