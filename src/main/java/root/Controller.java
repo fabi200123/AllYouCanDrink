@@ -35,6 +35,16 @@ public class Controller {
         stage.show();
     }
 
+    public void startMenu2() throws Exception {
+        FXMLLoader fxmlLoader2 = new FXMLLoader();
+        fxmlLoader2.setLocation(getClass().getResource("/fxml/menu_2.fxml"));
+        Scene scene2 = new Scene(fxmlLoader2.load(), 600, 400);
+        Stage stage2 = new Stage();
+        stage2.setTitle("Meniu");
+        stage2.setScene(scene2);
+        stage2.show();
+    }
+
     @FXML
     public void handleRegisterAction(){
         try {
@@ -49,7 +59,10 @@ public class Controller {
     public void handleLoginAction() throws Exception {
         try {
             UserService.checkUserDoesNotExist(usernameField.getText());
-            startMenu();
+            String string = UserService.checkRole(usernameField.getText());
+            if(string.equals(role.getValue()))
+                startMenu();
+            else registrationMessage.setText("Wrong role for this username");
 
         } catch (ExceptionUsernameDoesNotExist e) {
             registrationMessage.setText(e.getMessage());
