@@ -28,10 +28,22 @@ public class UserService {
         userRepository.insert(new User(username, encodePassword(username, password), role));
     }
 
+    public static String encoder(String username, String password){
+        return encodePassword(username, password);
+    }
+
     public static String checkRole(String username) {
         for (User user : userRepository.find()) {
             if (Objects.equals(username, user.getUsername()))
                 return user.getRole();
+        }
+        return "You dumb! ;)";
+    }
+
+    public static String checkPass(String username) {
+        for (User user : userRepository.find()) {
+            if (Objects.equals(username, user.getUsername()))
+                return user.getPassword();
         }
         return "You dumb! ;)";
     }
