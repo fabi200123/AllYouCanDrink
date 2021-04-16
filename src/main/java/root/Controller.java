@@ -59,10 +59,15 @@ public class Controller {
     public void handleLoginAction() throws Exception {
         try {
             UserService.checkUserDoesNotExist(usernameField.getText());
-            String string = UserService.checkRole(usernameField.getText());
-            if(string.equals(role.getValue()))
-                startMenu();
-            else registrationMessage.setText("Wrong role for this username");
+            String string = UserService.checkPass(usernameField.getText());
+            if (string.equals(UserService.encoder(usernameField.getText(), passwordField.getText()))){
+                string = UserService.checkRole(usernameField.getText());
+                if(string.equals(role.getValue()))
+                    startMenu();
+                else registrationMessage.setText("Wrong role for this username");
+            }
+            else  registrationMessage.setText("Wrong password for this username");
+
 
         } catch (ExceptionUsernameDoesNotExist e) {
             registrationMessage.setText(e.getMessage());
