@@ -9,6 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import javax.validation.constraints.Null;
+
 public class Controller {
 
     @FXML
@@ -48,9 +50,13 @@ public class Controller {
     @FXML
     public void handleRegisterAction(){
         try {
-            UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
-            registrationMessage.setText("Account created successfully!");
-
+            if((String) role.getValue() != "Manager" && (String) role.getValue() != "Client"){
+                registrationMessage.setText("Dummy, Dummy, you forgot your role!");
+            }
+            else {
+                UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
+                registrationMessage.setText("Account created successfully!");
+            }
         } catch (ExceptionUsernameExists e) {
             registrationMessage.setText(e.getMessage());
         }
@@ -63,7 +69,12 @@ public class Controller {
             if (string.equals(UserService.encoder(usernameField.getText(), passwordField.getText()))){
                 string = UserService.checkRole(usernameField.getText());
                 if(string.equals(role.getValue()))
-                    startMenu();
+                    if((String)role.getValue() == "Client"){
+                        startMenu();
+                    }
+                    else {
+                        startMenu2();
+                    }
                 else registrationMessage.setText("Wrong role for this username");
             }
             else  registrationMessage.setText("Wrong password for this username");
