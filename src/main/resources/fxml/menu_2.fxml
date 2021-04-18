@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="692.0" prefWidth="993.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <MenuButton layoutX="37.0" layoutY="58.0" mnemonicParsing="false" text="MenuButton">
-            <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-            </items>
-        </MenuButton>
+        <ImageView fitHeight="784.0" fitWidth="1177.0" layoutX="-11.0" layoutY="-1.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@fundal_menu.jpg" />
+            </image>
+        </ImageView>
+        <ScrollBar layoutX="605.0" layoutY="89.0" orientation="VERTICAL" prefHeight="687.0" prefWidth="14.0" />
+        <ScrollBar layoutX="392.0" layoutY="89.0" orientation="VERTICAL" prefHeight="687.0" prefWidth="14.0" />
+        <TextField accessibleRole="TEXT" alignment="CENTER" cache="true" layoutX="106.0" layoutY="14.0" prefHeight="10.0" prefWidth="177.0" text="Drinks">
+            <font>
+                <Font name="Bradley Hand ITC" size="40.0" />
+            </font>
+        </TextField>
+        <TextField accessibleRole="TEXT" alignment="CENTER" cache="true" layoutX="748.0" layoutY="14.0" prefHeight="10.0" prefWidth="177.0" text="Bars">
+            <font>
+                <Font name="Bradley Hand ITC" size="40.0" />
+            </font>
+        </TextField>
     </children>
 </AnchorPane>

@@ -28,9 +28,9 @@ public class Controller {
     public void startMenu() throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/fxml/menu.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 993, 692);
         Stage stage = new Stage();
-        stage.setTitle("Meniu");
+        stage.setTitle("Meniu Client");
         stage.setScene(scene);
         stage.show();
     }
@@ -38,9 +38,9 @@ public class Controller {
     public void startMenu2() throws Exception {
         FXMLLoader fxmlLoader2 = new FXMLLoader();
         fxmlLoader2.setLocation(getClass().getResource("/fxml/menu_2.fxml"));
-        Scene scene2 = new Scene(fxmlLoader2.load(), 600, 400);
+        Scene scene2 = new Scene(fxmlLoader2.load(), 993, 692);
         Stage stage2 = new Stage();
-        stage2.setTitle("Meniu");
+        stage2.setTitle("Meniu Manager");
         stage2.setScene(scene2);
         stage2.show();
     }
