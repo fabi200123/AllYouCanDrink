@@ -1,29 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ScrollBar?>
+<?import java.net.URL?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="657.0" prefWidth="875.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="657.0" prefWidth="875.0" styleClass="anchor" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@Stil2.css" />
+    </stylesheets>
     <children>
-        <ImageView fitHeight="657.0" fitWidth="875.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@fundal_menu.jpg" />
-            </image>
-        </ImageView>
-        <ScrollBar layoutX="544.0" layoutY="89.0" orientation="VERTICAL" prefHeight="548.0" prefWidth="14.0" />
-        <ScrollBar layoutX="307.0" layoutY="89.0" orientation="VERTICAL" prefHeight="548.0" prefWidth="14.0" />
-        <TextField accessibleRole="TEXT" alignment="CENTER" cache="true" layoutX="42.0" layoutY="14.0" prefHeight="10.0" prefWidth="190.0" text="Drinks">
+        <TextField accessibleRole="TEXT" alignment="CENTER" cache="true" editable="false" layoutX="42.0" layoutY="14.0" prefHeight="90.0" prefWidth="233.0" style="-fx-background-color: transparent;" styleClass="textBar" text="Drinks">
             <font>
-                <Font name="Bradley Hand ITC" size="40.0" />
+                <Font name="Algerian" size="50.0" />
             </font>
         </TextField>
-        <TextField accessibleRole="TEXT" alignment="CENTER" cache="true" layoutX="638.0" layoutY="14.0" prefHeight="10.0" prefWidth="177.0" text="Bars">
+        <TextField accessibleRole="TEXT" alignment="CENTER" cache="true" editable="false" layoutX="614.0" layoutY="14.0" prefHeight="82.0" prefWidth="201.0" style="-fx-background-color: transparent;" styleClass="textBar" text="Bars">
             <font>
-                <Font name="Bradley Hand ITC" size="40.0" />
+                <Font name="Algerian" size="50.0" />
             </font>
         </TextField>
     </children>

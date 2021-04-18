@@ -1,0 +1,8 @@
+.anchor{
+    -fx-background-image:url('fundal_menu.jpg');
+    -fx-background-size: 875 657;
+}
+.textBar{
+    -fx-background: transparent;
+    -fx-text-fill: white;
+}
