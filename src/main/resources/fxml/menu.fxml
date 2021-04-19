@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="657.0" prefWidth="875.0" styleClass="anchor" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="657.0" prefWidth="875.0" styleClass="anchor" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.ControllerMenu">
    <stylesheets>
       <URL value="@Stil.css" />
    </stylesheets>
@@ -20,5 +20,6 @@
             <Font name="Algerian" size="50.0" />
          </font>
       </TextField>
+      <Button fx:id="logout1" onAction="#logout" layoutX="267.0" layoutY="159.0" mnemonicParsing="false" text="Logout" />
    </children>
 </AnchorPane>
