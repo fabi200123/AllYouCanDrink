@@ -1,33 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<GridPane alignment="center" hgap="10" prefHeight="400" prefWidth="600" vgap="10" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.Controller">
+<GridPane alignment="center" hgap="10" prefHeight="400" prefWidth="600" styleClass="grid" stylesheets="@Stil3.css" vgap="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.Controller">
     <padding>
         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
     </padding>
-    <Text id="title-text" text="All You Can Drink" GridPane.columnIndex="2" GridPane.columnSpan="2" />
+    <Text id="title-text" fill="WHITE" stroke="WHITE" text="All You Can Drink" GridPane.columnIndex="2" GridPane.columnSpan="2">
+      <font>
+         <Font size="36.0" />
+      </font></Text>
 
-    <Label text="Username:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+    <Label text="Username:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <font>
+         <Font size="18.0" />
+      </font></Label>
 
     <TextField fx:id="usernameField" GridPane.columnIndex="3" GridPane.rowIndex="1" />
 
-    <Label text="Password:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+    <Label text="Password:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <font>
+         <Font size="18.0" />
+      </font></Label>
 
     <PasswordField fx:id="passwordField" GridPane.columnIndex="3" GridPane.rowIndex="2" />
 
-    <Label text="Role:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+    <Label text="Role:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
+      <font>
+         <Font size="18.0" />
+      </font></Label>
 
     <ComboBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
     </ComboBox>
 
     <Text fx:id="registrationMessage" GridPane.columnIndex="3" GridPane.rowIndex="7" />
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="3" GridPane.rowIndex="5">
-        <Button fx:id="login1" onAction="#handleLoginAction" text="Login" />
-        <Button onAction="#handleRegisterAction" text="Register" />
+        <Button fx:id="login1" onAction="#handleLoginAction" text="Login">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+        <Button onAction="#handleRegisterAction" text="Register">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
     </HBox>
     <columnConstraints>
         <ColumnConstraints />
