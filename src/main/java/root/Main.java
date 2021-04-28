@@ -17,7 +17,7 @@ public class Main extends Application {
         UserService.initDatabase();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/register.fxml"));
         primaryStage.setTitle("AllYouCanDrink");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
     }
 
