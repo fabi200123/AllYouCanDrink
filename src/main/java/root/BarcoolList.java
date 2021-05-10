@@ -1,5 +1,4 @@
 package root;
-
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.Id;
 import org.dizitart.no2.objects.ObjectRepository;
@@ -26,6 +25,10 @@ public class BarcoolList {
     }
 
     public BarcoolList() {
+    }
+
+    public static void addBarcool(String name, String details, String category){
+        root.GenericItemController.userRepository2.insert(new BarcoolList(name, details, category));
     }
 
     public String getName() {
