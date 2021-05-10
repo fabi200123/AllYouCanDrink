@@ -6,10 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import javax.validation.constraints.Null;
 import java.io.IOException;
 
 public class ControllerMenu {
@@ -23,7 +21,6 @@ public class ControllerMenu {
     private ListView<String> listViewLeft;
 
     public void logout(ActionEvent event) throws Exception {
-        FXMLLoader fxmlLoader2 = new FXMLLoader();
         Stage stage4 = new Stage();
         if(event.getSource() == logout1) {
             stage4 = (Stage) logout1.getScene().getWindow();
@@ -55,7 +52,7 @@ public class ControllerMenu {
     }
 
     public void initialize(){
-        listViewLeft.getItems().addAll("item 1", "item 2", "item 3", "item 4");
+        listViewLeft.getItems().addAll("item 1", "item 2", "item 3", "item 4", "item5");
     }
 }
 
