@@ -20,13 +20,20 @@ public class GenericItemController {
         label.setText(content);
     }
 
-    private static ObjectRepository<BarcoolList> userRepository2;
+    protected static ObjectRepository<BarcoolList> userRepository2;
+
+    private static Nitrite database;
 
     public static void initDatabaseForBarcool() {
-        Nitrite database = Nitrite.builder()
+        UserService.closeDatabase();
+        database = Nitrite.builder()
                 .filePath(getPathToFile("barcool.db").toFile())
                 .openOrCreate("admin", "admin");
 
         userRepository2 = database.getRepository(BarcoolList.class);
+    }
+
+    public static void closeDatabaseForBarcool(){
+        database.close();
     }
 }
