@@ -14,6 +14,7 @@ import java.util.Comparator;
 import java.util.Objects;
 
 import static root.GenericItemController.userRepository2;
+import static root.UserService.userRepository;
 
 public class ControllerMenu {
 
@@ -24,6 +25,8 @@ public class ControllerMenu {
 
     @FXML
     private ListView<String> listViewLeft;
+    @FXML
+    private ListView<String> listViewRight;
 
     public void logout(ActionEvent event) throws Exception {
         Stage stage4 = new Stage();
@@ -68,7 +71,56 @@ public class ControllerMenu {
         }
     }
 
-    private ArrayList<BarcoolList> barcoollist = new ArrayList<BarcoolList>();;
+    public void handleListSelect2(){
+        String selection = listViewRight.getSelectionModel().getSelectedItem();
+        String orice;
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/generic_item.fxml"));
+            Parent rootGeneric = fxmlLoader.load();
+            GenericItemController controller =  fxmlLoader.getController();
+            Stage stage = new Stage();
+            stage.setTitle(selection);
+            for (BarcoolList t : bars) {
+                if(selection.equals(t.getName())){
+                    orice = selection + "\n" + t.getDetails();
+                    controller.setLabel(orice);
+                }
+            }
+            stage.setScene(new Scene(rootGeneric, 400, 400));
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private ArrayList<String> managers = new ArrayList<String>();
+    private ArrayList<BarcoolList> barcoollist = new ArrayList<BarcoolList>();
+    private ArrayList<BarcoolList> bars = new ArrayList<BarcoolList>();
+
+    public void updateBars(){
+        GenericItemController.closeDatabaseForBarcool();
+        UserService.initDatabase();
+        managers.clear();
+        for (User t : userRepository.find()) {
+            if (Objects.equals(t.getRole(), "Manager"))
+                managers.add(t.getUsername());
+        }
+        UserService.closeDatabase();
+        GenericItemController.initDatabaseForBarcool();
+
+        for(String s : managers){
+            int ok = 0;
+            for(BarcoolList t : bars){
+                if(t.getName().equals(s)){
+                    ok = 1; break;
+                }
+            }
+            if (ok == 0) BarcoolList.addBarcool(s, "", "bar");
+        }
+
+    }
 
     public void initialize(){
         GenericItemController.initDatabaseForBarcool();
@@ -80,16 +132,31 @@ public class ControllerMenu {
         BarcoolList.addBarcool("Finlandia Vodka", "50 ml / 100 ml, $3 - $5, shot de vodka", "drink");
         BarcoolList.addBarcool("Jack Daniels Whiskey", "50 ml / 100 ml, $5 - $8, shot de whiskey", "drink");*/
 
-
+        barcoollist.clear();
+        bars.clear();
         for (BarcoolList t : userRepository2.find()) {
-            barcoollist.add(t);
+            if(t.getCategory().equals("drink"))
+                barcoollist.add(t);
+            else if(t.getCategory().equals("bar"))
+                bars.add(t);
+        }
+        updateBars();
+        bars.clear();
+        for (BarcoolList t : userRepository2.find()) {
+            if(t.getCategory().equals("bar"))
+                bars.add(t);
         }
         Collections.sort(barcoollist, (o1, o2) -> o1.getName().compareTo(o2.getName()));
         listViewLeft.getItems().clear();
         for (BarcoolList t : barcoollist) {
             listViewLeft.getItems().add(t.getName());
         }
+        Collections.sort(bars, (o1, o2) -> o1.getName().compareTo(o2.getName()));
+        listViewRight.getItems().clear();
+        for (BarcoolList t : bars) {
+            listViewRight.getItems().add(t.getName());
+        }
+
 
     }
 }
-
