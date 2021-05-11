@@ -27,6 +27,6 @@
                 <Font name="Algerian" size="20.0" />
             </font></Button>
         <ListView fx:id="listViewLeft" layoutX="59.0" layoutY="157.0" onMouseClicked="#handleListSelect" prefHeight="495.0" prefWidth="285.0" style="-fx-background-color: trasparent;" stylesheets="@Stil.css" />
-        <ListView layoutX="562.0" layoutY="157.0" prefHeight="495.0" prefWidth="285.0" style="-fx-background-color: transparent;" stylesheets="@Stil.css" />
+        <ListView fx:id="listViewRight" layoutX="562.0" layoutY="157.0" onMouseClicked="#handleListSelect2" prefHeight="495.0" prefWidth="285.0" style="-fx-background-color: transparent;" stylesheets="@Stil.css" />
     </children>
 </AnchorPane>

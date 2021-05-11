@@ -13,7 +13,7 @@ import static root.FileSystemService.getPathToFile;
 
 public class UserService {
 
-    private static ObjectRepository<User> userRepository;
+    protected static ObjectRepository<User> userRepository;
 
     private static Nitrite database;
 
