@@ -6,3 +6,18 @@
     -fx-background: transparent;
     -fx-text-fill: white;
 }
+
+.list-view .list-cell:even {
+    -fx-background-color: transparent;
+    -fx-font-size: 30px;
+    -fx-font-family:  "Courier New";
+    -fx-font-weight: bold;
+    -fx-text-fill: #dedede;
+}
+.list-view .list-cell:odd {
+    -fx-background-color: transparent;
+    -fx-font-size: 30px;
+    -fx-font-family:  "Courier New";
+    -fx-font-weight: bold;
+    -fx-text-fill: #dedede;
+}
