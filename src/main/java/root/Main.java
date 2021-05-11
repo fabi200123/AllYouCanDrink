@@ -9,12 +9,14 @@ import javafx.stage.Stage;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static root.UserService.initDatabase;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         initDirectory();
-        UserService.initDatabase();
+        initDatabase();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/register.fxml"));
         primaryStage.setTitle("AllYouCanDrink");
         primaryStage.setScene(new Scene(root, 600, 400));
