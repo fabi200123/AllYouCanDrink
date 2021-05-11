@@ -35,6 +35,7 @@ public class Controller {
         stage = (Stage) login1.getScene().getWindow();
         stage.setTitle("Meniu Client");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -46,6 +47,7 @@ public class Controller {
         stage2 = (Stage) login1.getScene().getWindow();
         stage2.setTitle("Meniu Manager");
         stage2.setScene(scene2);
+        stage2.setResizable(false);
         stage2.show();
     }
 
