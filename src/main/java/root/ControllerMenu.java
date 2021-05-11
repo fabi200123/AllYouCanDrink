@@ -1,18 +1,19 @@
 package root;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.InputEvent;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Objects;
+
+import static root.GenericItemController.userRepository2;
 
 public class ControllerMenu {
 
@@ -45,13 +46,20 @@ public class ControllerMenu {
 
     public void handleListSelect(){
         String selection = listViewLeft.getSelectionModel().getSelectedItem();
+        String orice;
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/generic_item.fxml"));
             Parent rootGeneric = fxmlLoader.load();
             GenericItemController controller =  fxmlLoader.getController();
-            controller.setLabel(selection);
             Stage stage = new Stage();
+            stage.setTitle(selection);
+            for (BarcoolList t : barcoollist) {
+                if(selection.equals(t.getName())){
+                    orice = selection + "\n" + t.getDetails();
+                    controller.setLabel(orice);
+                }
+            }
             stage.setScene(new Scene(rootGeneric, 400, 400));
             stage.setResizable(false);
             stage.show();
@@ -59,6 +67,8 @@ public class ControllerMenu {
             e.printStackTrace();
         }
     }
+
+    private ArrayList<BarcoolList> barcoollist = new ArrayList<BarcoolList>();;
 
     public void initialize(){
         GenericItemController.initDatabaseForBarcool();
@@ -70,7 +80,16 @@ public class ControllerMenu {
         BarcoolList.addBarcool("Finlandia Vodka", "50 ml / 100 ml, $3 - $5, shot de vodka", "drink");
         BarcoolList.addBarcool("Jack Daniels Whiskey", "50 ml / 100 ml, $5 - $8, shot de whiskey", "drink");*/
 
-        listViewLeft.getItems().addAll("item 1", "item 2", "item 3", "item 4", "item 5", "item 1", "item 2", "item 3", "item 4", "itemxgfchjhjfgggfxgh5");
+
+        for (BarcoolList t : userRepository2.find()) {
+            barcoollist.add(t);
+        }
+        Collections.sort(barcoollist, (o1, o2) -> o1.getName().compareTo(o2.getName()));
+        listViewLeft.getItems().clear();
+        for (BarcoolList t : barcoollist) {
+            listViewLeft.getItems().add(t.getName());
+        }
+
     }
 }
 
