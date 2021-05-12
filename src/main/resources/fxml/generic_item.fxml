@@ -8,12 +8,12 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.GenericItemController">
    <children>
       <Label fx:id="label" />
-      <Button layoutX="56.0" layoutY="350.0" mnemonicParsing="false" text="Like">
+      <Button fx:id="likebutton" onAction="#handleLike" layoutX="56.0" layoutY="350.0" mnemonicParsing="false" text="Like">
          <font>
             <Font name="Algerian" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="132.0" layoutY="350.0" mnemonicParsing="false" text="Dislike">
+      <Button fx:id="dislikebutton" onAction="#handleDislike" layoutX="132.0" layoutY="350.0" mnemonicParsing="false" text="Dislike">
          <font>
             <Font name="Algerian" size="14.0" />
          </font>
