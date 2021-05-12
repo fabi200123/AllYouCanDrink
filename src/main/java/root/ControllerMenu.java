@@ -185,7 +185,7 @@ public class ControllerMenu {
                 StackPane secondaryLayout1 = new StackPane();
                 Label textie = new Label("Request send succesfully!");
                 secondaryLayout1.getChildren().add(textie);
-                Scene secondScene1 = new Scene(secondaryLayout1, 150, 50);
+                Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
                 Stage newWindow1 = new Stage();
                 newWindow1.setTitle("Confirm Request");
                 newWindow1.setScene(secondScene1);
