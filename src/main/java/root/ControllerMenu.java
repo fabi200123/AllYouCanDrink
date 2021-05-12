@@ -1,6 +1,5 @@
 package root;
 
-import com.sun.prism.paint.Color;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -8,9 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.dizitart.no2.Nitrite;
@@ -21,7 +17,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Objects;
 
 import static root.GenericItemController.userRepository2;
@@ -140,7 +135,7 @@ public class ControllerMenu {
         return APPLICATION_HOME_PATH.resolve(Paths.get(".", path));
     }
 
-    protected static ObjectRepository<String> userRepository3;
+    protected static ObjectRepository<Request> userRepository3;
     private static Nitrite database3;
 
     public static void initDatabaseForRequest() {
@@ -148,7 +143,7 @@ public class ControllerMenu {
         database3 = Nitrite.builder()
                 .filePath(getPathToFile3("request.db").toFile())
                 .openOrCreate("admin", "admin");
-        userRepository3 = database3.getRepository(String.class);
+        userRepository3 = database3.getRepository(Request.class);
     }
 
     public static void closeDatabaseForRequests() {
@@ -172,18 +167,17 @@ public class ControllerMenu {
         newWindow.setScene(secondScene);
         newWindow.show();
         buttie.setOnAction(new EventHandler<ActionEvent>() {
-
             @Override
             public void handle(ActionEvent event) {
                 String requ = txt.getText();
                 GenericItemController.closeDatabaseForBarcool();
                 initDatabaseForRequest();
-                userRepository3.insert(requ);
+                userRepository3.insert(new Request(requ));
                 closeDatabaseForRequests();
                 GenericItemController.initDatabaseForBarcool();
                 newWindow.close();
                 StackPane secondaryLayout1 = new StackPane();
-                Label textie = new Label("Request send succesfully!");
+                Label textie = new Label("Request sent succesfully!");
                 secondaryLayout1.getChildren().add(textie);
                 Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
                 Stage newWindow1 = new Stage();
@@ -194,6 +188,7 @@ public class ControllerMenu {
         });
         secondaryLayout.getChildren().add(txt);
         secondaryLayout.getChildren().add(labi);
+
     }
 
     public void initialize(){
