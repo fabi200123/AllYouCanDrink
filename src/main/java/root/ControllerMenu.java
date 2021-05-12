@@ -26,7 +26,7 @@ public class ControllerMenu {
 
     private Parent root;
     @FXML
-    private Button logout1, logout2;
+    private Button logout1, logout2, edit;
 
 
     @FXML
@@ -227,5 +227,50 @@ public class ControllerMenu {
         }
 
 
+    }
+
+    public void handleEditButton(){
+        Button add = new Button();
+        Button delete = new Button();
+        add.setText("Add Drink");
+        delete.setText("Delete Drink");
+        StackPane secondaryLayout = new StackPane();
+        secondaryLayout.getChildren().add(add);
+        secondaryLayout.getChildren().add(delete);
+        add.setTranslateX(150);
+        add.setTranslateY(150);
+        delete.setTranslateX(-150);
+        delete.setTranslateY(150);
+        Scene secondScene = new Scene(secondaryLayout, 600, 400);
+        Stage newWindow = new Stage();
+        newWindow.setTitle("Edit Menu");
+        newWindow.setScene(secondScene);
+        newWindow.show();
+        add.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                /*String requ = txt.getText();
+                GenericItemController.closeDatabaseForBarcool();
+                initDatabaseForRequest();
+                userRepository3.insert(new Request(requ));
+                closeDatabaseForRequests();
+                GenericItemController.initDatabaseForBarcool();
+                newWindow.close();
+                StackPane secondaryLayout1 = new StackPane();
+                Label textie = new Label("Request sent succesfully!");
+                secondaryLayout1.getChildren().add(textie);
+                Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
+                Stage newWindow1 = new Stage();
+                newWindow1.setTitle("Confirm Request");
+                newWindow1.setScene(secondScene1);
+                newWindow1.show();*/
+            }
+        });
+        delete.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+
+            }
+        });
     }
 }
