@@ -1,13 +1,24 @@
 package root;
 
+import com.sun.prism.paint.Color;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import org.dizitart.no2.Nitrite;
+import org.dizitart.no2.objects.ObjectRepository;
+
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -120,6 +131,69 @@ public class ControllerMenu {
             if (ok == 0) BarcoolList.addBarcool(s, "", "bar");
         }
 
+    }
+    private static final String APPLICATION_FOLDER = ".request";
+    private static final String USER_FOLDER = System.getProperty("user.home");
+    public static final Path APPLICATION_HOME_PATH = Paths.get(USER_FOLDER, APPLICATION_FOLDER);
+
+    public static Path getPathToFile3(String... path) {
+        return APPLICATION_HOME_PATH.resolve(Paths.get(".", path));
+    }
+
+    protected static ObjectRepository<String> userRepository3;
+    private static Nitrite database3;
+
+    public static void initDatabaseForRequest() {
+        UserService.closeDatabase();
+        database3 = Nitrite.builder()
+                .filePath(getPathToFile3("request.db").toFile())
+                .openOrCreate("admin", "admin");
+        userRepository3 = database3.getRepository(String.class);
+    }
+
+    public static void closeDatabaseForRequests() {
+        database3.close();
+    }
+
+    public void handleRequest(){
+        Button buttie = new Button();
+        TextField txt = new TextField();
+        Label labi = new Label("Write your request in a single line and press Send!");
+        buttie.setText("Send Request");
+        StackPane secondaryLayout = new StackPane();
+        secondaryLayout.getChildren().add(buttie);
+        buttie.setTranslateX(150);
+        buttie.setTranslateY(150);
+        labi.setTranslateX(0);
+        labi.setTranslateY(-100);
+        Scene secondScene = new Scene(secondaryLayout, 600, 400);
+        Stage newWindow = new Stage();
+        newWindow.setTitle("Drink Request");
+        newWindow.setScene(secondScene);
+        newWindow.show();
+        buttie.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                String requ = txt.getText();
+                GenericItemController.closeDatabaseForBarcool();
+                initDatabaseForRequest();
+                userRepository3.insert(requ);
+                closeDatabaseForRequests();
+                GenericItemController.initDatabaseForBarcool();
+                newWindow.close();
+                StackPane secondaryLayout1 = new StackPane();
+                Label textie = new Label("Request send succesfully!");
+                secondaryLayout1.getChildren().add(textie);
+                Scene secondScene1 = new Scene(secondaryLayout1, 150, 50);
+                Stage newWindow1 = new Stage();
+                newWindow1.setTitle("Confirm Request");
+                newWindow1.setScene(secondScene1);
+                newWindow1.show();
+            }
+        });
+        secondaryLayout.getChildren().add(txt);
+        secondaryLayout.getChildren().add(labi);
     }
 
     public void initialize(){
