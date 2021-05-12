@@ -21,7 +21,6 @@ public class UserService {
         database = Nitrite.builder()
                 .filePath(getPathToFile("registration.db").toFile())
                 .openOrCreate("admin", "admin");
-
         userRepository = database.getRepository(User.class);
     }
 
