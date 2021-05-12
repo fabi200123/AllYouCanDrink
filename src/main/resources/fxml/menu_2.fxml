@@ -28,7 +28,7 @@
             </font></Button>
         <ListView fx:id="listViewLeft" layoutX="59.0" layoutY="157.0" onMouseClicked="#handleListSelect" prefHeight="495.0" prefWidth="285.0" style="-fx-background-color: trasparent;" stylesheets="@Stil.css" />
         <ListView fx:id="listViewRight" layoutX="562.0" layoutY="157.0" onMouseClicked="#handleListSelect2" prefHeight="495.0" prefWidth="285.0" style="-fx-background-color: transparent;" stylesheets="@Stil.css" />
-      <Button fx:id="edit" layoutX="399.0" layoutY="418.0" mnemonicParsing="false" text="Edit Menu">
+      <Button fx:id="edit" onAction="#handleEditButton" layoutX="399.0" layoutY="418.0" mnemonicParsing="false" text="Edit Menu">
          <font>
             <Font name="Algerian" size="20.0" />
          </font>
