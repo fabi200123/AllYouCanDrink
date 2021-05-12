@@ -159,8 +159,6 @@ public class ControllerMenu {
         secondaryLayout.getChildren().add(buttie);
         buttie.setTranslateX(150);
         buttie.setTranslateY(150);
-        labi.setTranslateX(0);
-        labi.setTranslateY(-100);
         Scene secondScene = new Scene(secondaryLayout, 600, 400);
         Stage newWindow = new Stage();
         newWindow.setTitle("Drink Request");
@@ -232,15 +230,21 @@ public class ControllerMenu {
     public void handleEditButton(){
         Button add = new Button();
         Button delete = new Button();
+        TextField txt = new TextField();
+        Label labi = new Label("Write down the name of the drink you want to add/delete!");
         add.setText("Add Drink");
         delete.setText("Delete Drink");
         StackPane secondaryLayout = new StackPane();
         secondaryLayout.getChildren().add(add);
         secondaryLayout.getChildren().add(delete);
+        secondaryLayout.getChildren().add(labi);
         add.setTranslateX(150);
         add.setTranslateY(150);
         delete.setTranslateX(-150);
         delete.setTranslateY(150);
+        labi.setTranslateX(0);
+        labi.setTranslateY(-100);
+        secondaryLayout.getChildren().add(txt);
         Scene secondScene = new Scene(secondaryLayout, 600, 400);
         Stage newWindow = new Stage();
         newWindow.setTitle("Edit Menu");
