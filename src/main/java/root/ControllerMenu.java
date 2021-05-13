@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
 
+import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
 import static root.GenericItemController.userRepository2;
 import static root.UserService.userRepository;
 
@@ -230,7 +231,7 @@ public class ControllerMenu {
     public void handleEditButton(){
         Button add = new Button();
         Button delete = new Button();
-        TextField txt = new TextField();
+        TextField chestie = new TextField();
         Label labi = new Label("Write down the name of the drink you want to add/delete!");
         add.setText("Add Drink");
         delete.setText("Delete Drink");
@@ -238,42 +239,61 @@ public class ControllerMenu {
         secondaryLayout.getChildren().add(add);
         secondaryLayout.getChildren().add(delete);
         secondaryLayout.getChildren().add(labi);
+        secondaryLayout.getChildren().add(chestie);
         add.setTranslateX(150);
         add.setTranslateY(150);
         delete.setTranslateX(-150);
         delete.setTranslateY(150);
         labi.setTranslateX(0);
         labi.setTranslateY(-100);
-        secondaryLayout.getChildren().add(txt);
         Scene secondScene = new Scene(secondaryLayout, 600, 400);
         Stage newWindow = new Stage();
         newWindow.setTitle("Edit Menu");
         newWindow.setScene(secondScene);
         newWindow.show();
+        String usernom = Controller.username();
         add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                /*String requ = txt.getText();
-                GenericItemController.closeDatabaseForBarcool();
-                initDatabaseForRequest();
-                userRepository3.insert(new Request(requ));
-                closeDatabaseForRequests();
-                GenericItemController.initDatabaseForBarcool();
+
+                String drink = chestie.getText();
+                //System.out.println(drink);
+                BarcoolList aux = null;
+                for(BarcoolList t : userRepository2.find()){
+                    if(t.getName().equals(usernom)){
+                        aux = new BarcoolList(t.getName(), t.getDetails() + "\n" + drink, t.getCategory(), t.getLike(), t.getDislike());
+                        userRepository2.remove(eq("name", aux.getName()));
+                        break;
+                    }
+                }
+                BarcoolList.addBarcoolElement(aux);
+
                 newWindow.close();
                 StackPane secondaryLayout1 = new StackPane();
-                Label textie = new Label("Request sent succesfully!");
+                Label textie = new Label("Drink added successfully");
                 secondaryLayout1.getChildren().add(textie);
                 Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
                 Stage newWindow1 = new Stage();
-                newWindow1.setTitle("Confirm Request");
+                newWindow1.setTitle("Confirm Add");
                 newWindow1.setScene(secondScene1);
-                newWindow1.show();*/
+                newWindow1.show();
             }
         });
         delete.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                String drink = chestie.getText();
+                System.out.println(drink);
 
+                newWindow.close();
+                StackPane secondaryLayout1 = new StackPane();
+                Label textie = new Label("Drink deleted successfully");
+                secondaryLayout1.getChildren().add(textie);
+                Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
+                Stage newWindow1 = new Stage();
+                newWindow1.setTitle("Confirm Delete");
+                newWindow1.setScene(secondScene1);
+                newWindow1.show();
             }
         });
     }
