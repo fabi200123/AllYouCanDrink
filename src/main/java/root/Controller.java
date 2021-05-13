@@ -22,6 +22,11 @@ public class Controller {
     @FXML
     private Button login1;
 
+    private static String username;
+
+    public static String username(){return username;}
+
+
     @FXML
     public void initialize() {
         role.getItems().addAll("Client", "Manager");
@@ -45,6 +50,7 @@ public class Controller {
         Scene scene2 = new Scene(fxmlLoader2.load(), 875, 657);
         Stage stage2 = new Stage();
         stage2 = (Stage) login1.getScene().getWindow();
+        //stage2.setTitle(username);
         stage2.setTitle("Meniu Manager");
         stage2.setScene(scene2);
         stage2.setResizable(false);
@@ -77,6 +83,7 @@ public class Controller {
                         startMenu();
                     }
                     else {
+                        username = usernameField.getText();
                         startMenu2();
                     }
                 else registrationMessage.setText("Wrong role for this username");
