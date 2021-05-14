@@ -25,6 +25,12 @@ class UserServiceTest {
     }
 
     @Test
+    void testDatabaseIsInitializedAndNoUserinsideit() {
+        assertThat(UserService.getAllUsers()).isNotNull();
+        assertThat(UserService.getAllUsers()).isEmpty();
+    }
+
+    @Test
     void testIfUserIsAddedCorectly() throws ExceptionUsernameExists {
         UserService.addUser(Client,parola, role_c);
         assertThat(UserService.getAllUsers()).isNotEmpty();
@@ -42,6 +48,23 @@ class UserServiceTest {
         assertThat(user.getPassword()).isEqualTo(UserService.encodePassword(Manager, parola));
     }
 
+    @Test
+    void testUsernamealreadyExists() {
+        assertThrows(ExceptionUsernameExists.class, () -> {
+            UserService.addUser(Client,parola, role_c);
+            UserService.addUser(Client,parola, role_c);
+            UserService.addUser(Manager,parola, role_m);
+            UserService.addUser(Manager,parola, role_m);
+        });
+    }
+
+    @Test
+    void testIfPassowordIsCorectly()throws ExceptionUsernameExists{
+        UserService.addUser(Client,parola, role_c);
+        assertThat(UserService.getAllUsers()).isNotEmpty();
+        assertThat(UserService.getAllUsers()).size().isEqualTo(1);
+        assertThat(UserService.checkPass(Client)).isNotEqualTo("You Dumb! ;)");
+    }
 
     @AfterEach
     void tearDown() {
