@@ -25,7 +25,7 @@ public class Main extends Application {
     }
 
     private void initDirectory() {
-        Path applicationHomePath = FileSystemService.APPLICATION_HOME_PATH;
+        Path applicationHomePath = FileSystemService.getApplicationHomeFolder();
         if (!Files.exists(applicationHomePath))
             applicationHomePath.toFile().mkdirs();
     }
