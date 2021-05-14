@@ -271,22 +271,44 @@ public class ControllerMenu {
                     BarcoolList aux = null;
                     for (BarcoolList t : userRepository2.find()) {
                         if (t.getName().equals(usernom)) {
-                            aux = new BarcoolList(t.getName(), t.getDetails() + "\n" + drink, t.getCategory(), t.getLike(), t.getDislike());
-                            userRepository2.remove(eq("name", aux.getName()));
-                            break;
+                            String G[] = t.getDetails().split("\n");
+                            for(String strtok : G){
+                                if(strtok.equals(drink)){
+                                    flag = 2;
+                                    break;
+                                }
+                            }
+                            if(flag == 2) {
+                                newWindow.close();
+                                StackPane secondaryLayout1 = new StackPane();
+                                Label textie = new Label("Drink already exists");
+                                secondaryLayout1.getChildren().add(textie);
+                                Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
+                                Stage newWindow1 = new Stage();
+                                newWindow1.setTitle("Add Failure");
+                                newWindow1.setScene(secondScene1);
+                                newWindow1.show();
+                                break;
+                            }
+                            else {
+                                aux = new BarcoolList(t.getName(), t.getDetails() + "\n" + drink, t.getCategory(), t.getLike(), t.getDislike());
+                                userRepository2.remove(eq("name", aux.getName()));
+                                break;
+                            }
                         }
                     }
-                    BarcoolList.addBarcoolElement(aux);
-
-                    newWindow.close();
-                    StackPane secondaryLayout1 = new StackPane();
-                    Label textie = new Label("Drink added successfully");
-                    secondaryLayout1.getChildren().add(textie);
-                    Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
-                    Stage newWindow1 = new Stage();
-                    newWindow1.setTitle("Confirm Add");
-                    newWindow1.setScene(secondScene1);
-                    newWindow1.show();
+                    if(flag != 2) {
+                        BarcoolList.addBarcoolElement(aux);
+                        newWindow.close();
+                        StackPane secondaryLayout1 = new StackPane();
+                        Label textie = new Label("Drink added successfully");
+                        secondaryLayout1.getChildren().add(textie);
+                        Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
+                        Stage newWindow1 = new Stage();
+                        newWindow1.setTitle("Confirm Add");
+                        newWindow1.setScene(secondScene1);
+                        newWindow1.show();
+                    }
                 }
                 else{
                     newWindow.close();
