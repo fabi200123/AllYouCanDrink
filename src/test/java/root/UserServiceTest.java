@@ -20,7 +20,7 @@ class UserServiceTest {
     @BeforeEach
     void setUp() throws Exception {
         FileSystemService.APPLICATION_FOLDER = ".test-registration";
-        FileUtils.cleanDirectory(FileSystemService.getPathToFile().toFile());
+        FileUtils.cleanDirectory(FileSystemService.getApplicationHomeFolder().toFile());
         UserService.initDatabase();
     }
 
