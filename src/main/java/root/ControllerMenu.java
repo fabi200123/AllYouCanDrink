@@ -228,6 +228,13 @@ public class ControllerMenu {
 
     }
 
+    public Boolean verifyInDatabase(String s){
+        for(BarcoolList l : userRepository2.find()){
+            if (l.getName().equals(s) && l.getCategory().equals("drink")) return true;
+        }
+        return false;
+    }
+
     public void handleEditButton(){
         Button add = new Button();
         Button delete = new Button();
@@ -255,45 +262,90 @@ public class ControllerMenu {
         add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                int flag = 0;
                 String drink = chestie.getText();
-                //System.out.println(drink);
-                BarcoolList aux = null;
-                for(BarcoolList t : userRepository2.find()){
-                    if(t.getName().equals(usernom)){
-                        aux = new BarcoolList(t.getName(), t.getDetails() + "\n" + drink, t.getCategory(), t.getLike(), t.getDislike());
-                        userRepository2.remove(eq("name", aux.getName()));
-                        break;
-                    }
+                if (!verifyInDatabase(drink)){
+                    flag = 1;
                 }
-                BarcoolList.addBarcoolElement(aux);
+                if(flag == 0) {
+                    BarcoolList aux = null;
+                    for (BarcoolList t : userRepository2.find()) {
+                        if (t.getName().equals(usernom)) {
+                            aux = new BarcoolList(t.getName(), t.getDetails() + "\n" + drink, t.getCategory(), t.getLike(), t.getDislike());
+                            userRepository2.remove(eq("name", aux.getName()));
+                            break;
+                        }
+                    }
+                    BarcoolList.addBarcoolElement(aux);
 
-                newWindow.close();
-                StackPane secondaryLayout1 = new StackPane();
-                Label textie = new Label("Drink added successfully");
-                secondaryLayout1.getChildren().add(textie);
-                Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
-                Stage newWindow1 = new Stage();
-                newWindow1.setTitle("Confirm Add");
-                newWindow1.setScene(secondScene1);
-                newWindow1.show();
+                    newWindow.close();
+                    StackPane secondaryLayout1 = new StackPane();
+                    Label textie = new Label("Drink added successfully");
+                    secondaryLayout1.getChildren().add(textie);
+                    Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
+                    Stage newWindow1 = new Stage();
+                    newWindow1.setTitle("Confirm Add");
+                    newWindow1.setScene(secondScene1);
+                    newWindow1.show();
+                }
+                else{
+                    newWindow.close();
+                    StackPane secondaryLayout1 = new StackPane();
+                    Label textie = new Label("Drink doesn't exist, make a request for admin");
+                    secondaryLayout1.getChildren().add(textie);
+                    Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
+                    Stage newWindow1 = new Stage();
+                    newWindow1.setTitle("Add Failure");
+                    newWindow1.setScene(secondScene1);
+                    newWindow1.show();
+                }
             }
         });
         delete.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 String drink = chestie.getText();
-                System.out.println(drink);
-
-                newWindow.close();
-                StackPane secondaryLayout1 = new StackPane();
-                Label textie = new Label("Drink deleted successfully");
-                secondaryLayout1.getChildren().add(textie);
-                Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
-                Stage newWindow1 = new Stage();
-                newWindow1.setTitle("Confirm Delete");
-                newWindow1.setScene(secondScene1);
-                newWindow1.show();
+                BarcoolList aux = null;
+                int flag = 0;
+                for(BarcoolList t : userRepository2.find()){
+                    if(t.getName().equals(usernom)){
+                        String ss[]= t.getDetails().split("\n");
+                        String newDetails = "";
+                        for(String s : ss){
+                            if(drink.equals(s)) flag = 1;
+                            else newDetails = newDetails + "\n" + s;
+                        }
+                        if (flag == 0){
+                            break;
+                        }
+                        aux = new BarcoolList(t.getName(), newDetails, t.getCategory(), t.getLike(), t.getDislike());
+                        userRepository2.remove(eq("name", aux.getName()));
+                        break;
+                    }
+                }
+                if (flag == 1){
+                    BarcoolList.addBarcoolElement(aux);
+                    newWindow.close();
+                    StackPane secondaryLayout1 = new StackPane();
+                    Label textie = new Label("Drink deleted successfully");
+                    secondaryLayout1.getChildren().add(textie);
+                    Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
+                    Stage newWindow1 = new Stage();
+                    newWindow1.setTitle("Confirm Delete");
+                    newWindow1.setScene(secondScene1);
+                    newWindow1.show();
+                }
+                else {
+                    newWindow.close();
+                    StackPane secondaryLayout1 = new StackPane();
+                    Label textie = new Label("Drink not found");
+                    secondaryLayout1.getChildren().add(textie);
+                    Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
+                    Stage newWindow1 = new Stage();
+                    newWindow1.setTitle("Delete Failure");
+                    newWindow1.setScene(secondScene1);
+                    newWindow1.show();
+                }
             }
         });
     }
