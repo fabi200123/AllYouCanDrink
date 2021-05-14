@@ -6,6 +6,7 @@ import org.dizitart.no2.objects.ObjectRepository;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Objects;
 
 import static root.FileSystemService.getPathToFile;
@@ -31,6 +32,10 @@ public class UserService {
     public static void addUser(String username, String password, String role) throws ExceptionUsernameExists {
         checkUserDoesNotAlreadyExist(username);
         userRepository.insert(new User(username, encodePassword(username, password), role));
+    }
+
+    public static List<User> getAllUsers() {
+        return userRepository.find().toList();
     }
 
     public static String encoder(String username, String password){
@@ -73,7 +78,7 @@ public class UserService {
         }
     }
 
-    private static String encodePassword(String salt, String password) {
+    static String encodePassword(String salt, String password) {
         MessageDigest md = getMessageDigest();
         md.update(salt.getBytes(StandardCharsets.UTF_8));
 
