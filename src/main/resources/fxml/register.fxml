@@ -27,30 +27,30 @@
          <Font size="18.0" />
       </font></Label>
 
-    <TextField fx:id="usernameField" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+    <TextField fx:id="usernameField" id="username" GridPane.columnIndex="4" GridPane.rowIndex="1" />
 
     <Label text="Password:" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
       <font>
          <Font size="18.0" />
       </font></Label>
 
-    <PasswordField fx:id="passwordField" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+    <PasswordField fx:id="passwordField" id="pass" GridPane.columnIndex="4" GridPane.rowIndex="2" />
 
     <Label text="Role:" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
       <font>
          <Font size="18.0" />
       </font></Label>
 
-    <ComboBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+    <ComboBox fx:id="role" id="role" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
     </ComboBox>
 
-    <Text fx:id="registrationMessage" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+    <Text fx:id="registrationMessage" id="registrationMessage" GridPane.columnIndex="4" GridPane.rowIndex="7" />
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="4" GridPane.rowIndex="5">
-        <Button fx:id="login1" onAction="#handleLoginAction" text="Login">
+        <Button fx:id="login1" id="login" onAction="#handleLoginAction" text="Login">
          <font>
             <Font size="14.0" />
          </font></Button>
-        <Button onAction="#handleRegisterAction" text="Register">
+        <Button id="register" onAction="#handleRegisterAction" text="Register">
          <font>
             <Font size="14.0" />
          </font></Button>
