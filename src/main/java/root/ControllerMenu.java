@@ -20,6 +20,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
+import static org.dizitart.no2.objects.filters.ObjectFilters.text;
 import static root.GenericItemController.userRepository2;
 import static root.UserService.userRepository;
 
@@ -128,16 +129,19 @@ public class ControllerMenu {
         }
 
     }
-    private static final String APPLICATION_FOLDER = ".request";
+    static String APPLICATION_FOLDER = ".request";
     private static final String USER_FOLDER = System.getProperty("user.home");
     public static final Path APPLICATION_HOME_PATH = Paths.get(USER_FOLDER, APPLICATION_FOLDER);
 
     public static Path getPathToFile3(String... path) {
-        return APPLICATION_HOME_PATH.resolve(Paths.get(".", path));
+        return getApplicationHomeFolder3().resolve(Paths.get(".", path));
+    }
+    public static Path getApplicationHomeFolder3() {
+        return Paths.get(USER_FOLDER, APPLICATION_FOLDER);
     }
 
     protected static ObjectRepository<Request> userRepository3;
-    private static Nitrite database3;
+    static Nitrite database3;
 
     public static void initDatabaseForRequest() {
         UserService.closeDatabase();
@@ -160,6 +164,8 @@ public class ControllerMenu {
         secondaryLayout.getChildren().add(buttie);
         buttie.setTranslateX(150);
         buttie.setTranslateY(150);
+        labi.setTranslateY(-100);
+        txt.setId("text");
         Scene secondScene = new Scene(secondaryLayout, 600, 400);
         Stage newWindow = new Stage();
         newWindow.setTitle("Drink Request");
@@ -171,18 +177,35 @@ public class ControllerMenu {
                 String requ = txt.getText();
                 GenericItemController.closeDatabaseForBarcool();
                 initDatabaseForRequest();
-                userRepository3.insert(new Request(requ));
-                closeDatabaseForRequests();
-                GenericItemController.initDatabaseForBarcool();
-                newWindow.close();
-                StackPane secondaryLayout1 = new StackPane();
-                Label textie = new Label("Request sent succesfully!");
-                secondaryLayout1.getChildren().add(textie);
-                Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
-                Stage newWindow1 = new Stage();
-                newWindow1.setTitle("Confirm Request");
-                newWindow1.setScene(secondScene1);
-                newWindow1.show();
+                try {
+                    userRepository3.insert(new Request(requ));
+                    closeDatabaseForRequests();
+                    GenericItemController.initDatabaseForBarcool();
+                    newWindow.close();
+                    StackPane secondaryLayout1 = new StackPane();
+                    Label textie = new Label("Request sent succesfully!");
+                    textie.setId("label");
+                    secondaryLayout1.getChildren().add(textie);
+                    Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
+                    Stage newWindow1 = new Stage();
+                    newWindow1.setTitle("Confirm Request");
+                    newWindow1.setScene(secondScene1);
+                    newWindow1.show();
+                }
+                catch (Exception e){
+                    closeDatabaseForRequests();
+                    GenericItemController.initDatabaseForBarcool();
+                    newWindow.close();
+                    StackPane secondaryLayout1 = new StackPane();
+                    Label textie = new Label("Request already exists!");
+                    textie.setId("label1");
+                    secondaryLayout1.getChildren().add(textie);
+                    Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
+                    Stage newWindow1 = new Stage();
+                    newWindow1.setTitle("Request Failure");
+                    newWindow1.setScene(secondScene1);
+                    newWindow1.show();
+                }
             }
         });
         secondaryLayout.getChildren().add(txt);
