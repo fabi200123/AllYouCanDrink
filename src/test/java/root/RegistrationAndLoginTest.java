@@ -35,7 +35,7 @@ class RegistrationAndLoginTest {
     }
 
     @Test
-    void testRegistrationClient(FxRobot Mishu){
+    void testRegistrationAndLogin(FxRobot Mishu){
         Mishu.clickOn("#username");
         Mishu.write("Viorel");
         Mishu.clickOn("#pass");
