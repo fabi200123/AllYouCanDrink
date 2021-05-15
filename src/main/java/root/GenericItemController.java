@@ -8,6 +8,8 @@ import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.NitriteCollection;
 import org.dizitart.no2.objects.ObjectRepository;
 
+import java.util.List;
+
 import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
 import static root.MenuFileSystemService.getPathToFile;
 
@@ -35,9 +37,13 @@ public class GenericItemController {
     public static void initDatabaseForBarcool() {
         UserService.closeDatabase();
         database = Nitrite.builder()
-                .filePath(getPathToFile("barcool.db").toFile())
+                .filePath(MenuFileSystemService.getPathToFile("barcool.db").toFile())
                 .openOrCreate("admin", "admin");
         userRepository2 = database.getRepository(BarcoolList.class);
+    }
+
+    public static List<BarcoolList> getAllBarcools() {
+        return userRepository2.find().toList();
     }
 
     public static void closeDatabaseForBarcool(){
