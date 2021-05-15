@@ -66,6 +66,31 @@ class UserServiceTest {
         assertThat(UserService.checkPass(Client)).isNotEqualTo("You Dumb! ;)");
     }
 
+    @Test
+    void testIfClientRoleIsCorectly() throws Exception{
+        UserService.addUser(Client,parola, role_c);
+        assertThat(UserService.getAllUsers()).isNotEmpty();
+        assertThat(UserService.getAllUsers()).size().isEqualTo(1);
+        assertThat(UserService.checkRole(Client)).isNotEqualTo("You Dumb! ;)");
+    }
+
+    @Test
+    void testIfManagerRoleIsCorectly() throws Exception{
+        UserService.addUser(Manager,parola, role_m);
+        assertThat(UserService.getAllUsers()).isNotEmpty();
+        assertThat(UserService.getAllUsers()).size().isEqualTo(1);
+        assertThat(UserService.checkRole(Manager)).isNotEqualTo("You Dumb! ;)");
+    }
+
+    @Test
+    void testUserinDatabase(){
+        assertThrows(ExceptionUsernameDoesNotExist.class, () -> {
+            UserService.addUser(Manager,parola, role_m);
+            UserService.checkUserDoesNotExist("Client");
+        });
+
+    }
+
     @AfterEach
     void tearDown() {
         UserService.closeDatabase();

@@ -17,35 +17,35 @@
     <padding>
         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
     </padding>
-    <Text id="title-text" fill="WHITE" stroke="WHITE" text="All You Can Drink" GridPane.columnIndex="2" GridPane.columnSpan="2">
+    <Text id="title-text" fill="WHITE" stroke="WHITE" text="All You Can Drink" GridPane.columnIndex="3" GridPane.columnSpan="2">
       <font>
          <Font size="36.0" />
       </font></Text>
 
-    <Label text="Username:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+    <Label text="Username:" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
       <font>
          <Font size="18.0" />
       </font></Label>
 
-    <TextField fx:id="usernameField" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+    <TextField fx:id="usernameField" GridPane.columnIndex="4" GridPane.rowIndex="1" />
 
-    <Label text="Password:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+    <Label text="Password:" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
       <font>
          <Font size="18.0" />
       </font></Label>
 
-    <PasswordField fx:id="passwordField" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+    <PasswordField fx:id="passwordField" GridPane.columnIndex="4" GridPane.rowIndex="2" />
 
-    <Label text="Role:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
+    <Label text="Role:" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
       <font>
          <Font size="18.0" />
       </font></Label>
 
-    <ComboBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+    <ComboBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
     </ComboBox>
 
-    <Text fx:id="registrationMessage" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="3" GridPane.rowIndex="5">
+    <Text fx:id="registrationMessage" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="4" GridPane.rowIndex="5">
         <Button fx:id="login1" onAction="#handleLoginAction" text="Login">
          <font>
             <Font size="14.0" />
@@ -55,9 +55,15 @@
             <Font size="14.0" />
          </font></Button>
     </HBox>
+   <Label text="*Managerii trebuie sa se inregistreze cu numele barului!" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="10">
+      <font>
+         <Font name="Calisto MT" size="12.0" />
+      </font>
+   </Label>
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints />
+      <ColumnConstraints />
       <ColumnConstraints />
       <ColumnConstraints />
     </columnConstraints>
@@ -70,5 +76,8 @@
         <RowConstraints />
         <RowConstraints />
         <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
     </rowConstraints>
 </GridPane>
