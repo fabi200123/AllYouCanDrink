@@ -35,7 +35,7 @@ class RegistrationAndLoginTest {
     }
 
     @Test
-    void testRegistrationAndLogin(FxRobot Mishu){
+    void testRegistrationAndLogin(FxRobot Mishu) throws InterruptedException {
         Mishu.clickOn("#username");
         Mishu.write("Viorel");
         Mishu.clickOn("#pass");

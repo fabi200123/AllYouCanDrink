@@ -265,6 +265,9 @@ public class ControllerMenu {
         Label labi = new Label("Write down the name of the drink you want to add/delete!");
         add.setText("Add Drink");
         delete.setText("Delete Drink");
+        add.setId("add");
+        delete.setId("delete");
+        chestie.setId("chestie");
         StackPane secondaryLayout = new StackPane();
         secondaryLayout.getChildren().add(add);
         secondaryLayout.getChildren().add(delete);
@@ -305,6 +308,7 @@ public class ControllerMenu {
                                 newWindow.close();
                                 StackPane secondaryLayout1 = new StackPane();
                                 Label textie = new Label("Drink already exists");
+                                textie.setId("textie");
                                 secondaryLayout1.getChildren().add(textie);
                                 Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
                                 Stage newWindow1 = new Stage();
@@ -325,6 +329,7 @@ public class ControllerMenu {
                         newWindow.close();
                         StackPane secondaryLayout1 = new StackPane();
                         Label textie = new Label("Drink added successfully");
+                        textie.setId("textie1");
                         secondaryLayout1.getChildren().add(textie);
                         Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
                         Stage newWindow1 = new Stage();
@@ -337,6 +342,7 @@ public class ControllerMenu {
                     newWindow.close();
                     StackPane secondaryLayout1 = new StackPane();
                     Label textie = new Label("Drink doesn't exist, make a request for admin");
+                    textie.setId("textie2");
                     secondaryLayout1.getChildren().add(textie);
                     Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
                     Stage newWindow1 = new Stage();
@@ -373,6 +379,7 @@ public class ControllerMenu {
                     newWindow.close();
                     StackPane secondaryLayout1 = new StackPane();
                     Label textie = new Label("Drink deleted successfully");
+                    textie.setId("textie3");
                     secondaryLayout1.getChildren().add(textie);
                     Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
                     Stage newWindow1 = new Stage();
@@ -384,6 +391,7 @@ public class ControllerMenu {
                     newWindow.close();
                     StackPane secondaryLayout1 = new StackPane();
                     Label textie = new Label("Drink not found");
+                    textie.setId("textie4");
                     secondaryLayout1.getChildren().add(textie);
                     Scene secondScene1 = new Scene(secondaryLayout1, 260, 50);
                     Stage newWindow1 = new Stage();
