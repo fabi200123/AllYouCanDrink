@@ -52,7 +52,7 @@ public class GenericItemController {
 
     public void handleLike(){
         if(flag == 0) {
-            likebutton.setStyle("-fx-background-color: LightGreen; ");
+            likebutton.setStyle("-fx-background-color:LightGreen; ");
             flag = 1;
         }
         String s = label.getText();
