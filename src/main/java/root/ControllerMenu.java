@@ -262,6 +262,7 @@ public class ControllerMenu {
         Button add = new Button();
         Button delete = new Button();
         TextField chestie = new TextField();
+        Label schema = new Label("To see the updated menu, please relogin!");
         Label labi = new Label("Write down the name of the drink you want to add/delete!");
         add.setText("Add Drink");
         delete.setText("Delete Drink");
@@ -272,7 +273,9 @@ public class ControllerMenu {
         secondaryLayout.getChildren().add(add);
         secondaryLayout.getChildren().add(delete);
         secondaryLayout.getChildren().add(labi);
+        secondaryLayout.getChildren().add(schema);
         secondaryLayout.getChildren().add(chestie);
+        schema.setTranslateY(80);
         add.setTranslateX(150);
         add.setTranslateY(150);
         delete.setTranslateX(-150);
