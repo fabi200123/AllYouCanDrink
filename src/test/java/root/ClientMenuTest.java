@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
+import org.assertj.core.condition.Not;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,7 +55,7 @@ class ClientMenuTest {
     }
 
     @Test
-    void testMeniuManager(FxRobot Mishu) throws IOException {
+    void testMeniuClient(FxRobot Mishu) throws IOException {
         Mishu.clickOn("#username");
         Mishu.write("Mishu`sBar");
         Mishu.clickOn("#pass");
@@ -105,6 +106,8 @@ class ClientMenuTest {
         Mishu.clickOn("#dislikebutton");
         assertThat(Mishu.lookup("#dislikebutton").queryButton()).doesNotHaveStyle("-fx-background-color: #f51e1e; ");
         Mishu.closeCurrentWindow();
+        assertThat(Mishu.lookup("Edit Menu"));
+        assertThat(Mishu.lookup("Request Drink"));
         Mishu.clickOn("Logout");
         Mishu.closeCurrentWindow();
     }

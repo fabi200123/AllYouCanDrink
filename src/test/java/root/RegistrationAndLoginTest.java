@@ -92,6 +92,10 @@ class RegistrationAndLoginTest {
         Mishu.clickOn("#role");
         Mishu.clickOn("#register");
         assertThat(Mishu.lookup("#registrationMessage").queryText()).hasText("Dummy, Dummy, you forgot your role!");
+        Mishu.clickOn("#role");
+        Mishu.clickOn("Client");
+        Mishu.clickOn("#login");
+        assertThat(Mishu.lookup("#registrationMessage").queryText()).hasText("Funny though! Nobody uses the username: MishuBar3!");
 
     }
 

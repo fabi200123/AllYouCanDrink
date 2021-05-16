@@ -83,9 +83,9 @@ class UserServiceTest {
     }
 
     @Test
-    void testUserinDatabase(){
+    void testUserinDatabase() {
         assertThrows(ExceptionUsernameDoesNotExist.class, () -> {
-            UserService.addUser(Manager,parola, role_m);
+            UserService.addUser(Manager, parola, role_m);
             UserService.checkUserDoesNotExist("Client");
         });
 
